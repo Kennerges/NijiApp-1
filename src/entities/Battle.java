@@ -36,9 +36,9 @@ public class Battle {
         if (response == 1) {
             double ninjaOneValue = (ninjaOne.getAttributes().getMovement() +
                     ninjaOne.getAttributes().getTaijutsu()) / 2;
-            double ninjaTwoValue = (ninjaTwo.getAttributes().getTaijutsu() +
+            double ninjaTwoValue = ninjaTwo.getAttributes().getTaijutsu() +
                     ninjaTwo.getAttributes().getAgility() +
-                    ninjaTwo.getAttributes().getMovement()) * 2;
+                    ninjaTwo.getAttributes().getMovement();
 
             double totalValue = ninjaOneValue + ninjaTwoValue;
             double result = random.nextDouble() * totalValue;
@@ -54,8 +54,8 @@ public class Battle {
 
         } else {
             double ninjaOneValue = ninjaOne.getAttributes().getMovement();
-            double ninjaTwoValue = ninjaTwo.getAttributes().getMovement() +
-                    ninjaTwo.getAttributes().getAgility() +
+            double ninjaTwoValue = (ninjaTwo.getAttributes().getMovement() +
+                    ninjaTwo.getAttributes().getAgility()) +
                     ninjaTwo.getAttributes().getTaijutsu();
 
             double totalValue = ninjaOneValue + ninjaTwoValue;
@@ -82,9 +82,9 @@ public class Battle {
             for (int i = 0; i < n; i++) {
                 double ninjaOneValue = (ninjaOne.getAttributes().getMovement() +
                         ninjaOne.getAttributes().getTaijutsu()) / 2;
-                double ninjaTwoValue = (ninjaTwo.getAttributes().getTaijutsu() +
+                double ninjaTwoValue = ninjaTwo.getAttributes().getTaijutsu() +
                         ninjaTwo.getAttributes().getAgility() +
-                        ninjaTwo.getAttributes().getMovement()) * 2;
+                        ninjaTwo.getAttributes().getMovement();
 
                 double totalValue = ninjaOneValue + ninjaTwoValue;
                 double result = random.nextDouble() * totalValue;
@@ -92,10 +92,9 @@ public class Battle {
             }
         } else {
             for (int i = 0; i < n; i++) {
-
                 double ninjaOneValue = ninjaOne.getAttributes().getMovement();
-                double ninjaTwoValue = ninjaTwo.getAttributes().getMovement() +
-                        ninjaTwo.getAttributes().getAgility() +
+                double ninjaTwoValue = (ninjaTwo.getAttributes().getMovement() +
+                        ninjaTwo.getAttributes().getAgility()) +
                         ninjaTwo.getAttributes().getTaijutsu();
 
                 double totalValue = ninjaOneValue + ninjaTwoValue;

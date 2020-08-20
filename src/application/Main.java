@@ -26,10 +26,11 @@ public class Main {
         Ninja ninjaOne = battle.getNinjaOne();
         Ninja ninjaTwo = battle.getNinjaTwo();
 
-        while (ninjaOne.getAttributes().getLife() > 0 || ninjaTwo.getAttributes().getLife() > 0
-        || ninjaOne.getAttributes().getStamina() > 0 || ninjaTwo.getAttributes().getStamina() > 0) {
+        while (ninjaOne.getAttributes().getLife() > 0 && ninjaTwo.getAttributes().getLife() > 0
+                && ninjaOne.getAttributes().getStamina() > 0 && ninjaTwo.getAttributes().getStamina() > 0) {
             UI.battleScreen(ninjaOne, ninjaTwo);
             UI.actionScreen(ninjaOne, ninjaTwo, sc);
+            UI.battleScreen(ninjaOne, ninjaTwo);
             UI.clearScreen();
         }
 
