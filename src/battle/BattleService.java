@@ -11,7 +11,7 @@ public class BattleService {
 
     public void initBattle(Scanner sc) {
         Ninja[] ninjas = UI.configureBattleScreen(sc);
-        battle.createNinjas(ninjas);
+        battle = new Battle(ninjas);
     }
 
 }

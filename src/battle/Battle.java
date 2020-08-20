@@ -11,7 +11,7 @@ public class Battle {
     private Ninja ninjaOne;
     private Ninja ninjaTwo;
 
-    public void createNinjas(Ninja[] ninjas) {
+    public Battle(Ninja[] ninjas) {
         this.ninjaOne = ninjas[0];
         this.ninjaTwo = ninjas[1];
     }
