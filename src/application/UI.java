@@ -1,7 +1,8 @@
 package application;
 
+import battle.BattleService;
 import entities.Attributes;
-import entities.Battle;
+import battle.Battle;
 import entities.Ninja;
 
 import java.util.Scanner;
@@ -12,6 +13,8 @@ public class UI {
     public static final String ANSI_YELLOW = "\u001B[33m";
     public static final String ANSI_BLUE = "\u001B[34m";
 
+    public static Integer actuallyService = 0;
+
     public static void startScreen() {
         System.out.println("- - - - - - - - - -");
         System.out.println("Nijigakure APP # 1");
@@ -20,21 +23,25 @@ public class UI {
     }
 
     private static void showFunctionsScreen() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Funções:\n");
         System.out.println("> 1. Batalhas 1v1\n");
+        System.out.println("> 0. Encerrar o programa.\n");
         System.out.println("Escolha a funcionalidade a ser usada.");
         System.out.print("Resposta: ");
+        functionChosenScreen(sc.nextInt());
     }
 
     public static void functionChosenScreen(int functionChosen) {
-        Scanner sc = new Scanner(System.in);
         System.out.println();
         if (functionChosen == Battle.FUNCTION_NUMBER) {
             System.out.print(ANSI_YELLOW + "Batalha 1v1" + ANSI_RESET);
             System.out.println(" escolhido");
             System.out.print("Aperte Enter para continuar ...");
+            actuallyService = 1;
+        } else if (functionChosen == 0){
+            actuallyService = 0;
         }
-        sc.nextLine();
     }
 
     public static Ninja[] configureBattleScreen(Scanner sc) {

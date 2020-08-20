@@ -42,7 +42,7 @@ public class Ninja {
             } else if (response == 2) {
                 ninja.takingImpactDamageOnLife(surplus);
                 rest = myForce - surplus;
-                ninja.takingImpactDamageOnStamina(rest);
+                toReturn = ninja.takingImpactDamageOnStamina(rest);
             } else if (response == 1) {
                 ninja.takingImpactDamageOnLife(surplus);
                 rest = myForce - surplus;
@@ -56,8 +56,10 @@ public class Ninja {
             double result = diff / 100;
             double newDamage = attributes.getStrength() * result;
             double toReturn = 0;
-            if (response == 1) {
+            if (response == 1 && defense) {
                 toReturn = ninja.takingImpactDamageOnStamina(newDamage / 2);
+            } else if (response == 1) {
+                toReturn = ninja.takingImpactDamageOnStamina(newDamage);
             } else if (response == 2) {
                 toReturn = ninja.takingImpactDamageOnStamina(newDamage);
             }

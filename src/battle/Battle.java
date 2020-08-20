@@ -1,4 +1,6 @@
-package entities;
+package battle;
+
+import entities.Ninja;
 
 import java.util.Random;
 
@@ -9,7 +11,7 @@ public class Battle {
     private Ninja ninjaOne;
     private Ninja ninjaTwo;
 
-    public void createBattle(Ninja[] ninjas) {
+    public void createNinjas(Ninja[] ninjas) {
         this.ninjaOne = ninjas[0];
         this.ninjaTwo = ninjas[1];
     }
@@ -39,7 +41,6 @@ public class Battle {
             double ninjaTwoValue = ninjaTwo.getAttributes().getTaijutsu() +
                     ninjaTwo.getAttributes().getAgility() +
                     ninjaTwo.getAttributes().getMovement();
-
             double totalValue = ninjaOneValue + ninjaTwoValue;
             double result = random.nextDouble() * totalValue;
             boolean success = result <= ninjaOneValue;
@@ -51,16 +52,13 @@ public class Battle {
                 System.out.println("B conseguiu se defender do ataque de A.");
                 return false;
             }
-
         } else {
             double ninjaOneValue = ninjaOne.getAttributes().getMovement();
             double ninjaTwoValue = (ninjaTwo.getAttributes().getMovement() +
                     ninjaTwo.getAttributes().getAgility()) +
                     ninjaTwo.getAttributes().getTaijutsu();
-
             double totalValue = ninjaOneValue + ninjaTwoValue;
             double result = random.nextDouble() * totalValue;
-
             boolean success = result <= ninjaOneValue;
 
             if (success) {
@@ -74,7 +72,6 @@ public class Battle {
     }
 
     public static boolean[] multipleAttackHandsCleanTest(Ninja ninjaOne, Ninja ninjaTwo, Integer response, int n) {
-
         boolean[] booleans = new boolean[n];
         Random random = new Random();
 
@@ -85,10 +82,10 @@ public class Battle {
                 double ninjaTwoValue = ninjaTwo.getAttributes().getTaijutsu() +
                         ninjaTwo.getAttributes().getAgility() +
                         ninjaTwo.getAttributes().getMovement();
-
                 double totalValue = ninjaOneValue + ninjaTwoValue;
                 double result = random.nextDouble() * totalValue;
                 booleans[i] = result <= ninjaOneValue;
+
             }
         } else {
             for (int i = 0; i < n; i++) {
@@ -96,7 +93,6 @@ public class Battle {
                 double ninjaTwoValue = (ninjaTwo.getAttributes().getMovement() +
                         ninjaTwo.getAttributes().getAgility()) +
                         ninjaTwo.getAttributes().getTaijutsu();
-
                 double totalValue = ninjaOneValue + ninjaTwoValue;
                 double result = random.nextDouble() * totalValue;
                 booleans[i] = result <= ninjaOneValue;
