@@ -1,20 +1,33 @@
 package entities;
 
-import application.UI;
-
 import java.util.Random;
 
 public class Battle {
 
     public static final Integer FUNCTION_NUMBER = 1;
 
-    public static void initBattle(Ninja ninjaOne, Ninja ninjaTwo) {
+    private Ninja ninjaOne;
+    private Ninja ninjaTwo;
 
-        while (1 == 1) {
-            UI.battleScreen(ninjaOne, ninjaTwo);
-            UI.selectionAndActionScreen(ninjaOne, ninjaTwo);
-            UI.clearScreen();
-        }
+    public void createBattle(Ninja[] ninjas) {
+        this.ninjaOne = ninjas[0];
+        this.ninjaTwo = ninjas[1];
+    }
+
+    public Ninja getNinjaOne() {
+        return ninjaOne;
+    }
+
+    public void setNinjaOne(Ninja ninjaOne) {
+        this.ninjaOne = ninjaOne;
+    }
+
+    public Ninja getNinjaTwo() {
+        return ninjaTwo;
+    }
+
+    public void setNinjaTwo(Ninja ninjaTwo) {
+        this.ninjaTwo = ninjaTwo;
     }
 
     public static boolean singleAttackHandsCleanTest(Ninja ninjaOne, Ninja ninjaTwo, Integer response) {
@@ -76,11 +89,6 @@ public class Battle {
                 double totalValue = ninjaOneValue + ninjaTwoValue;
                 double result = random.nextDouble() * totalValue;
                 booleans[i] = result <= ninjaOneValue;
-                if (booleans[i]) {
-                    System.out.println("Ataque #" + (i + 1) + " deu certo");
-                } else {
-                    System.out.println("Ataque #" + (i + 1) + " deu errado");
-                }
             }
         } else {
             for (int i = 0; i < n; i++) {
@@ -93,11 +101,6 @@ public class Battle {
                 double totalValue = ninjaOneValue + ninjaTwoValue;
                 double result = random.nextDouble() * totalValue;
                 booleans[i] = result <= ninjaOneValue;
-                if (booleans[i]) {
-                    System.out.println("Ataque #" + (i + 1) + " deu certo");
-                } else {
-                    System.out.println("Ataque #" + (i + 1) + " deu errado");
-                }
             }
         }
         return booleans;

@@ -1,7 +1,5 @@
 package entities;
 
-import java.util.Scanner;
-
 public class Ninja {
 
     private String name;
@@ -29,74 +27,61 @@ public class Ninja {
         this.attributes = attributes;
     }
 
-    public static Ninja[] createNinjas(Scanner sc) {
-        int n = 0;
-        Ninja[] ninjas = new Ninja[2];
+    public String applyingImpactAttack(Ninja ninja, Integer response, boolean defense) {
 
-        while (n < 2) {
-            System.out.println("-> " + (n + 1) + "º Ninja");
-            System.out.print("Nome: ");
-            String name = sc.next();
-            System.out.print("Taijutsu: ");
-            double taijutsu = sc.nextInt();
-            System.out.print("Força: ");
-            double strength = sc.nextInt();
-            System.out.print("Agilidade: ");
-            double agility = sc.nextInt();
-            System.out.print("Movimentação: ");
-            double movement = sc.nextInt();
-            System.out.print("Resistência: ");
-            double resistance = sc.nextDouble();
-            System.out.print("Vida: ");
-            double life = sc.nextDouble();
-            double stamina = resistance * 10;
-            double chakra = stamina * 2;
-            Attributes attributesNinja = new Attributes(taijutsu, strength, agility, movement, resistance,
-                    life, stamina, chakra);
-            ninjas[n] = new Ninja(name, attributesNinja);
-            System.out.println();
-            n++;
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-        }
-
-        return ninjas;
-    }
-
-    public void applyingImpactAttack(Ninja ninja) {
-        if (attributes.getStrength() >= ninja.getAttributes().getResistance()) {
+        if (attributes.getStrength() > ninja.getAttributes().getResistance()) {
             double myForce = attributes.getStrength();
             double enemyResistance = ninja.attributes.getResistance();
             double surplus = myForce - enemyResistance;
-            ninja.takingImpactDamageOnLife(surplus);
-            double rest = myForce - surplus;
-            ninja.takingImpactDamageOnStamina(rest);
+            double rest;
+            double toReturn = 0;
+            if (response == 1 && defense) {
+                ninja.takingImpactDamageOnLife(surplus / 2);
+                rest = myForce - surplus;
+                toReturn = ninja.takingImpactDamageOnStamina(rest / 2);
+            } else if (response == 2) {
+                ninja.takingImpactDamageOnLife(surplus);
+                rest = myForce - surplus;
+                ninja.takingImpactDamageOnStamina(rest);
+            } else if (response == 1) {
+                ninja.takingImpactDamageOnLife(surplus);
+                rest = myForce - surplus;
+                toReturn = ninja.takingImpactDamageOnStamina(rest);
+            }
+            return "Dano causado a Stamina: " + toReturn;
         } else {
             double strongAttr = ninja.getAttributes().getResistance();
             double smallAttr = attributes.getStrength();
-            double result = 100 * smallAttr / strongAttr;
-            double diff = (100 - result) / 100;
-            double newDamage = attributes.getStrength() * diff;
-            ninja.takingImpactDamageOnStamina(newDamage);
+            double diff  = 100 * smallAttr / strongAttr;
+            double result = diff / 100;
+            double newDamage = attributes.getStrength() * result;
+            double toReturn = 0;
+            if (response == 1) {
+                toReturn = ninja.takingImpactDamageOnStamina(newDamage / 2);
+            } else if (response == 2) {
+                toReturn = ninja.takingImpactDamageOnStamina(newDamage);
+            }
+            return "Dano causado a Stamina: " + toReturn;
         }
     }
 
     public void takingImpactDamageOnLife(double damage) {
         double previousLife = getAttributes().getLife();
-        double nextLife = previousLife - damage / 2 / 6;
+        double nextLife = previousLife - damage / 2 / 10;
         getAttributes().setLife(nextLife);
     }
 
-    public void takingImpactDamageOnStamina(double damage) {
+    public Double takingImpactDamageOnStamina(double damage) {
         double previousStamina = getAttributes().getStamina();
-        double nextStamina = previousStamina - damage / 2;
+        double nextStamina = previousStamina - damage / 2 / 5;
         getAttributes().setStamina(nextStamina);
         updateResistance();
+        return damage / 2 / 5;
     }
 
     public void updateResistance() {
-        double newStamina = Math.round(getAttributes().getStamina() / 10);
-        getAttributes().setResistance(newStamina);
+        double resistanceUpdated = getAttributes().getStamina() / 10;
+        getAttributes().setResistance(resistanceUpdated);
     }
 
 }
