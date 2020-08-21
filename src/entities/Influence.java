@@ -1,7 +1,5 @@
 package entities;
 
-import mission.ContractMission;
-
 public class Influence {
 
     private int linesWritten;

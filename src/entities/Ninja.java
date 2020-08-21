@@ -1,6 +1,6 @@
 package entities;
 
-import mission.ContractMission;
+import mission.Contract;
 
 public class Ninja {
 
@@ -57,8 +57,8 @@ public class Ninja {
         return totalPoints * ((linesWritten * 100.0 / totalLines) / 100);
     }
 
-    public double xpGained(ContractMission mission) {
-        return mission.ranking.xpPerLine * linesWritten;
+    public double xpGained(Contract contract) {
+        return contract.ranking.xpPerLine * linesWritten;
     }
 
     public String applyingImpactAttack(Ninja ninja, Integer response, boolean defense) {
