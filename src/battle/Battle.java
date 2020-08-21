@@ -6,8 +6,6 @@ import java.util.Random;
 
 public class Battle {
 
-    public static final Integer FUNCTION_NUMBER = 1;
-
     private Ninja ninjaOne;
     private Ninja ninjaTwo;
 
