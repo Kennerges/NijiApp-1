@@ -1,6 +1,5 @@
 package application;
 
-import entities.Attributes;
 import entities.Ninja;
 import entities.Technique;
 import workout.TechniqueWorkout;
@@ -16,7 +15,8 @@ public class UITechniqueWorkout {
         System.out.println("Configure o seu Aprendizado");
         System.out.println("- - - - - - - - - - - - - -");
         System.out.println();
-        System.out.print("> 1ª: Diga o nome da técnica: ");
+        System.out.println("> 1ª: Diga o nome da técnica: ");
+        System.out.print("— ");
         String name = sc.nextLine();
         Technique technique = new Technique(name);
         System.out.print("> 2ª: Quantos valores diferentes esta técnica possui? ");
@@ -30,8 +30,10 @@ public class UITechniqueWorkout {
         System.out.println("7. Emissão de Chakra");
         for (int i = 1; i <= n; i ++) {
             System.out.println("-> Qual é o número do " + i + "º atributo: ");
+            System.out.print("— ");
             int answer = sc.nextInt();
             System.out.println("-> Qual é o valor dele: ");
+            System.out.print("— ");
             int attributeValue = sc.nextInt();
             technique.addValue(answer, attributeValue);
         } Ninja ninja = ninjaInformationScreen(sc, technique.getValues());
@@ -42,7 +44,8 @@ public class UITechniqueWorkout {
 
     private static Ninja ninjaInformationScreen(Scanner sc, Map<String, Integer> map) {
         Ninja ninja = new Ninja();
-        System.out.print("-> Cite o nome do ninja: ");
+        System.out.println("-> Cite o nome do ninja: ");
+        System.out.print("— ");
         sc.nextLine();
         String name = sc.nextLine();
         ninja.setName(name);
@@ -52,36 +55,45 @@ public class UITechniqueWorkout {
             switch (attribute) {
                 case "ninjutsu":
                     System.out.print("Ninjutsu: ");
+                    System.out.print("— ");
                     ninja.getAttributes().setNinjutsu(sc.nextDouble());
                     break;
                 case "taijutsu":
                     System.out.print("Taijutsu: ");
+                    System.out.print("— ");
                     ninja.getAttributes().setTaijutsu(sc.nextDouble());
                     break;
                 case "genjutsu":
                     System.out.print("Genjutsu: ");
+                    System.out.print("— ");
                     ninja.getAttributes().setGenjutsu(sc.nextDouble());
                     break;
                 case "intelligence":
                     System.out.print("Inteligência: ");
+                    System.out.print("— ");
                     ninja.getAttributes().setIntelligence(sc.nextDouble());
                     break;
                 case "selling":
                     System.out.print("Selos: ");
+                    System.out.print("— ");
                     ninja.getAttributes().setSelling(sc.nextDouble());
                     break;
                 case "controlChakra":
                     System.out.print("Controle de Chakra: ");
+                    System.out.print("— ");
                     ninja.getAttributes().setControlChakra(sc.nextDouble());
                     break;
                 default:
                     System.out.print("Emissão de Chakra: ");
+                    System.out.print("— ");
                     ninja.getAttributes().setEmissionChakra(sc.nextDouble());
                     break;
             }
         }
         System.out.print("->: Qual o valor do atributo dele em Inteligência: ");
-        ninja.getAttributes().setIntelligence(sc.nextDouble());
+        System.out.print("— ");
+        double intelligence = sc.nextDouble();
+        ninja.getAttributes().setIntelligence(intelligence);
         return ninja;
     }
 

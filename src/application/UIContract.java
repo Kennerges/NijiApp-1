@@ -14,13 +14,19 @@ public class UIContract {
         System.out.println("Configure o seu Contrato");
         System.out.println("- - - - - - - - - - - - -");
         System.out.println();
-        System.out.print("> 1ª: Diga a quantidade de jogadores presentes na Missão: ");
+        System.out.println("> 1ª: Diga a quantidade de jogadores presentes na Missão: ");
+        System.out.print("— ");
         int players = sc.nextInt();
-        System.out.print("> 2ª: Quantos personagens estavam presentes na Missão? ");
-        Ninja[] ninjas = ninjaInformationScreen(sc.nextInt(), sc);
-        System.out.print("> 3ª: Qual o Ranking da Missão? ");
-        Ranking ranking = new Ranking(sc.next().toUpperCase().charAt(0));
-        System.out.print("> 4ª: Qual o Pagamento em ¥ da Missão: ");
+        System.out.println("> 2ª: Quantos personagens estavam presentes na Missão? ");
+        System.out.print("— ");
+        int characters = sc.nextInt();
+        Ninja[] ninjas = ninjaInformationScreen(characters, sc);
+        System.out.println("> 3ª: Qual o Ranking da Missão? ");
+        System.out.print("— ");
+        char rank = sc.next().toUpperCase().charAt(0);
+        Ranking ranking = new Ranking(rank);
+        System.out.println("> 4ª: Qual o Pagamento em ¥ da Missão: ");
+        System.out.print("— ");
         int payment = sc.nextInt();
         System.out.println();
         clearScreen();
@@ -40,10 +46,11 @@ public class UIContract {
                     "\n4. Tokubetsu Jounin" +
                     "\n5. Kage" +
                     "\n6. Saikounin" +
-                    "\nResposta: ");
+                    "\n— ");
             int chosenPatent = sc.nextInt();
             Patent patent = new Patent(chosenPatent);
-            System.out.print("->: Quantas linhas ele escreveu? ");
+            System.out.println("->: Quantas linhas ele escreveu? ");
+            System.out.print("— ");
             int lines = sc.nextInt();
             System.out.println();
             ninjas[i] = new Ninja(name, lines, patent);

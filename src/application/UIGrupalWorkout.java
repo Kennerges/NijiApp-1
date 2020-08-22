@@ -13,10 +13,13 @@ public class UIGrupalWorkout {
         System.out.println("Configure o seu Treino");
         System.out.println("- - - - - - - - - - - - -");
         System.out.println();
-        System.out.print("> 1ª: Diga a quantidade de jogadores presentes na Missão: ");
+        System.out.println("> 1ª: Diga a quantidade de jogadores presentes na Treino: ");
+        System.out.print("— ");
         int players = sc.nextInt();
-        System.out.print("> 2ª: Quantos personagens estavam presentes na Missão? ");
-        Ninja[] ninjas = ninjaInformationScreen(sc.nextInt(), sc);
+        System.out.println("> 2ª: Quantos personagens estavam presentes no Treino? ");
+        System.out.print("— ");
+        int characters = sc.nextInt();
+        Ninja[] ninjas = ninjaInformationScreen(characters, sc);
         System.out.println();
         clearScreen();
         return new GroupWorkout(ninjas, players);
@@ -25,7 +28,8 @@ public class UIGrupalWorkout {
     private static Ninja[] ninjaInformationScreen(int n, Scanner sc) {
         Ninja[] ninjas = new Ninja[n];
         for (int i = 0; i < ninjas.length; i++) {
-            System.out.print("-> Cite o nome do ninja #" + (i + 1) + ": ");
+            System.out.println("-> Cite o nome do ninja #" + (i + 1) + ": ");
+            System.out.print("— ");
             sc.nextLine();
             String name = sc.nextLine();
             System.out.print("--> Qual a patente dele? " +
@@ -35,10 +39,11 @@ public class UIGrupalWorkout {
                     "\n4. Tokubetsu Jounin" +
                     "\n5. Kage" +
                     "\n6. Saikounin" +
-                    "\nResposta: ");
+                    "\n— ");
             int chosenPatent = sc.nextInt();
             Patent patent = new Patent(chosenPatent);
-            System.out.print("->: Quantas linhas ele escreveu? ");
+            System.out.println("->: Quantas linhas ele escreveu? ");
+            System.out.print("— ");
             int lines = sc.nextInt();
             System.out.println();
             ninjas[i] = new Ninja(name, lines, patent);

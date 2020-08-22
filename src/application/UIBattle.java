@@ -59,12 +59,12 @@ public class UIBattle {
     public static void actionScreen(Ninja ninjaOne, Ninja ninjaTwo, Scanner sc) {
         System.out.println("Escolha o seu personagem: ");
         System.out.println("1. " + ninjaOne.getName());
-        System.out.println("2. " + ninjaTwo.getName());
-        System.out.println();
-        System.out.print("Resposta: ");
+        System.out.println("2. " + ninjaTwo.getName() + "\n");
+        System.out.print("— ");
         int characterChosen = sc.nextInt();
         while (characterChosen != 1 && characterChosen != 2) {
             System.out.println("Não existe este personagem.\nPor favor, digite um número válido: ");
+            System.out.print("— ");
             characterChosen = sc.nextInt();
         } if (characterChosen == 1) {
             System.out.println(ninjaOne.getName() + " escolhido.");
@@ -73,22 +73,23 @@ public class UIBattle {
         } System.out.println();
         System.out.println("Qual será a sua ação? ");
         System.out.println("1. Ataque de mãos vazias");
-        System.out.print("Resposta: ");
+        System.out.print("— ");
         int actionChosen = sc.nextInt();
         while (actionChosen != 1) {
             System.out.println("Não existe esta ação.\nPor favor, digite um número válido: ");
+            System.out.print("— ");
             actionChosen = sc.nextInt();
         } System.out.println();
         System.out.println("1. Único ataque");
         System.out.println("2. Múltiplos ataques");
-        System.out.print("Resposta: ");
+        System.out.print("— ");
         int typeChosed = sc.nextInt();
         System.out.println();
         System.out.println("O que o outro ninja decidiu fazer? ");
         if (actionChosen == 1) {
             System.out.println("1. Defender");
             System.out.println("2. Desviar");
-        } System.out.print("Resposta: ");
+        } System.out.print("— ");
         int responseChosed = sc.nextInt();
         System.out.println();
 
@@ -102,7 +103,8 @@ public class UIBattle {
             }
             System.out.println(damage);
         } else if (characterChosen == 1 && actionChosen == 1 && typeChosed == 2) {
-            System.out.print("Quantas vezes: ");
+            System.out.println("Quantas vezes: ");
+            System.out.print("— ");
             int n = sc.nextInt();
             boolean[] attempts = Battle.multipleAttackHandCleanTest(ninjaOne, ninjaTwo, responseChosed, n);
             for (boolean attempt : attempts) {

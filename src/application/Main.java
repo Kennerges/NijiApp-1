@@ -34,7 +34,7 @@ public class Main {
         System.out.println("> 5. Aprendizado de Técnicas");
         System.out.println("> 0. Encerrar o programa.\n");
         System.out.println("Escolha a funcionalidade a ser usada.\n");
-        System.out.print("Resposta: ");
+        System.out.print("— ");
         int functionChosen = sc.nextInt();
         System.out.println();
 

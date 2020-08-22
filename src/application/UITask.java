@@ -11,7 +11,8 @@ public class UITask {
         System.out.println("Configure a sua Tarefa");
         System.out.println("- - - - - - - - - - - - -");
         System.out.println();
-        System.out.print("> 1ª: Qual o Rank da Missão: ");
+        System.out.println("> 1ª: Qual o Rank da Missão: ");
+        System.out.print("— ");
         String rank = sc.nextLine();
         System.out.println();
         clearScreen();
