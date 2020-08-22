@@ -1,14 +1,16 @@
 package entities;
 
-import mission.Contract;
-
 public class Ninja {
 
     private String name;
     private int linesWritten;
 
     private Patent patent;
-    private Attributes attributes;
+    public Attributes attributes;
+
+    public Ninja() {
+        this.attributes = new Attributes();
+    }
 
     public Ninja(String name, Attributes attributes) {
         this.name = name;
@@ -33,32 +35,20 @@ public class Ninja {
         return linesWritten;
     }
 
-    public void setLinesWritten(int linesWritten) {
-        this.linesWritten = linesWritten;
-    }
-
     public Patent getPatent() {
         return patent;
-    }
-
-    public void setPatent(Patent patent) {
-        this.patent = patent;
     }
 
     public Attributes getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Attributes attributes) {
-        this.attributes = attributes;
-    }
-
     public double pointsGained(int totalLines, double totalPoints) {
         return totalPoints * ((linesWritten * 100.0 / totalLines) / 100);
     }
 
-    public double xpGained(Contract contract) {
-        return contract.ranking.xpPerLine * linesWritten;
+    public double xpGained(Ranking ranking) {
+        return ranking.xpPerLine * linesWritten;
     }
 
     public String applyingImpactAttack(Ninja ninja, Integer response, boolean defense) {

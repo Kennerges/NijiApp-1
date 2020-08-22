@@ -4,11 +4,11 @@ import entities.Ninja;
 
 import java.util.Random;
 
-public class BattleService {
+public class Battle {
 
     public static final Integer FUNCTION_NUMBER = 1;
 
-    public static boolean singleAttackHandsCleanTest(Ninja attacker, Ninja defender, Integer response) {
+    public static boolean singleAttackHandCleanTest(Ninja attacker, Ninja defender, Integer response) {
         Random random = new Random();
         if (response == 1) {
             double attackerValue = (attacker.getAttributes().getMovement() +
@@ -42,7 +42,7 @@ public class BattleService {
         }
     }
 
-    public static boolean[] multipleAttackHandsCleanTest(Ninja attacker, Ninja defender, Integer response, int n) {
+    public static boolean[] multipleAttackHandCleanTest(Ninja attacker, Ninja defender, Integer response, int n) {
         boolean[] booleans = new boolean[n];
         Random random = new Random();
 

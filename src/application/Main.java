@@ -1,9 +1,10 @@
 package application;
 
-import battle.BattleService;
+import battle.Battle;
 import entities.Ninja;
 import mission.Contract;
-import mission.ContractService;
+import workout.GroupWorkout;
+import workout.TechniqueWorkout;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -27,42 +28,55 @@ public class Main {
         System.out.println("Funções:\n");
         System.out.println("> 1. Sistema de Batalhas 1v1");
         System.out.println("> 2. Recompensa em Contratos");
-        System.out.println("> 3. Pontuação por Treino Individual");
-        System.out.println("> 4. Pontuação por Treino em Grupo");
-        System.out.println("> 5. Aprendizado de Técnicas");
+        System.out.println("> 3. Pontuação por Treino em Grupo");
+        System.out.println("> 4. Aprendizado de Técnicas");
         System.out.println("> 0. Encerrar o programa.\n");
         System.out.println("Escolha a funcionalidade a ser usada.\n");
         System.out.print("Resposta: ");
         int functionChosen = sc.nextInt();
         System.out.println();
 
-        while (functionChosen != 1 && functionChosen != 2 && functionChosen != 0) {
+        while (functionChosen != 1 && functionChosen != 2 && functionChosen != 3
+                && functionChosen != 4 && functionChosen != 0) {
             System.out.print("Opção inexistente. Selecione outra: ");
             functionChosen = sc.nextInt();
             System.out.println();
         }
 
-        if (functionChosen == BattleService.FUNCTION_NUMBER) {
+        if (functionChosen == Battle.FUNCTION_NUMBER) {
             System.out.print(ANSI_YELLOW + "Sistema de Batalhas 1v1" + ANSI_RESET);
             System.out.println(" escolhido");
             sc.nextLine();
             System.out.println();
-            Ninja[] ninjas = UIBattles.battleConfigureScreen(sc);
+            Ninja[] ninjas = UIBattle.battleConfigureScreen(sc);
             Ninja ninjaOne = ninjas[0];
             Ninja ninjaTwo = ninjas[1];
             while (ninjaOne.getAttributes().getLife() > 0 && ninjaTwo.getAttributes().getLife() > 0
                     && ninjaOne.getAttributes().getStamina() > 0 && ninjaTwo.getAttributes().getStamina() > 0) {
-                UIBattles.battleScreen(ninjaOne, ninjaTwo);
-                UIBattles.actionScreen(ninjaOne, ninjaTwo, sc);
-                UIBattles.clearScreen();
+                UIBattle.battleScreen(ninjaOne, ninjaTwo);
+                UIBattle.actionScreen(ninjaOne, ninjaTwo, sc);
             }
-        } else if (functionChosen == ContractService.FUNCTION_NUMBER) {
+        } else if (functionChosen == Contract.FUNCTION_NUMBER) {
             System.out.print(ANSI_YELLOW + "Recompensa de Contratos" + ANSI_RESET);
             System.out.println(" escolhido");
             sc.nextLine();
             System.out.println();
             Contract contract = UIContract.contractConfigureScreen(sc);
-            ContractService.defineReward(contract);
+            contract.defineReward();
+        } else if (functionChosen == GroupWorkout.FUNCTION_NUMBER) {
+            System.out.print(ANSI_YELLOW + "Pontuação por Treino em Grupo" + ANSI_RESET);
+            System.out.println(" escolhido");
+            sc.nextLine();
+            System.out.println();
+            GroupWorkout groupWorkout = UIGrupalWorkout.grupalWorkoutConfigureScreen(sc);
+            groupWorkout.defineReward();
+        } else if (functionChosen == TechniqueWorkout.FUNCTION_NUMBER) {
+            System.out.print(ANSI_YELLOW + "Aprendizado de Técnicas" + ANSI_RESET);
+            System.out.println(" escolhido");
+            sc.nextLine();
+            System.out.println();
+            TechniqueWorkout techniqueWorkout = UITechniqueWorkout.techniqueWorkoutConfigureScreen(sc);
+            techniqueWorkout.defineApprentice();
         } else if (functionChosen == 0) {
             System.out.print("Programa finalizado.");
         }

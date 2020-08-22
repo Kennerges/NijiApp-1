@@ -1,28 +1,33 @@
-package mission;
+package workout;
 
 import entities.Ninja;
 
-public class ContractService {
+public class GroupWorkout {
 
-    public static final Integer FUNCTION_NUMBER = 2;
+    public static final Integer FUNCTION_NUMBER = 3;
 
-    public static void defineReward(Contract contract) {
+    private final Ninja[] ninjas;
+    private final int players;
+
+    public GroupWorkout(Ninja[] ninjas, int players) {
+        this.ninjas = ninjas;
+        this.players = players;
+    }
+    public void defineReward() {
         int totalLines = 0;
         double totalPoints;
         double totalInfluence = 0;
         double avgInfluence;
-
-        Ninja[] ninjas = contract.ninjas;
 
         for (Ninja ninja : ninjas) {
             totalLines = totalLines + ninja.getLinesWritten();
             totalInfluence = totalInfluence + ninja.getPatent().influence;
         }
 
-        avgInfluence = totalInfluence / contract.ninjas.length;
+        avgInfluence = totalInfluence / ninjas.length;
         totalPoints = (avgInfluence *
                 totalLines + (avgInfluence *
-                totalLines * (contract.players * 0.08))) / 4;
+                totalLines * (players * 0.08)));
 
         for (Ninja ninja : ninjas) {
             System.out.println("Name: "
@@ -30,13 +35,7 @@ public class ContractService {
                     + "\n"
                     + "Earned points: "
                     + String.format("%.2f",ninja.pointsGained(totalLines, totalPoints))
-                    + " points\n"
-                    + "Earned experience: "
-                    + String.format("%.2f", ninja.xpGained(contract))
-                    + " xp\n"
-                    + "Payment: ¥ "
-                    + contract.payment
-                    + "\n");
+                    + " points\n");
         }
     }
 }

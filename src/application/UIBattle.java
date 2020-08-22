@@ -1,12 +1,12 @@
 package application;
 
-import battle.BattleService;
+import battle.Battle;
 import entities.Attributes;
 import entities.Ninja;
 
 import java.util.Scanner;
 
-public class UIBattles {
+public class UIBattle {
 
     public static Ninja[] battleConfigureScreen(Scanner sc) {
         int n = 0;
@@ -93,7 +93,7 @@ public class UIBattles {
         System.out.println();
 
         if (characterChosen == 1 && actionChosen == 1 && typeChosed == 1) {
-            boolean success = BattleService.singleAttackHandsCleanTest(ninjaOne, ninjaTwo, responseChosed);
+            boolean success = Battle.singleAttackHandCleanTest(ninjaOne, ninjaTwo, responseChosed);
             String damage;
             if (success) {
                 damage = ninjaOne.applyingImpactAttack(ninjaTwo, responseChosed, false);
@@ -104,17 +104,15 @@ public class UIBattles {
         } else if (characterChosen == 1 && actionChosen == 1 && typeChosed == 2) {
             System.out.print("Quantas vezes: ");
             int n = sc.nextInt();
-            boolean[] attempts = BattleService.multipleAttackHandsCleanTest(ninjaOne, ninjaTwo, responseChosed, n);
-            int m = 1;
+            boolean[] attempts = Battle.multipleAttackHandCleanTest(ninjaOne, ninjaTwo, responseChosed, n);
             for (boolean attempt : attempts) {
                 if (attempt) {
                     String damage = ninjaOne.applyingImpactAttack(ninjaTwo, responseChosed, false);
                     System.out.println(damage);
                 }
-                m ++;
             }
         } if (characterChosen == 2 && actionChosen == 1 && typeChosed == 1) {
-            boolean success = BattleService.singleAttackHandsCleanTest(ninjaTwo, ninjaOne, responseChosed);
+            boolean success = Battle.singleAttackHandCleanTest(ninjaTwo, ninjaOne, responseChosed);
             if (success) {
                 System.out.println("O ataque deu certo.");
                 String damage = ninjaTwo.applyingImpactAttack(ninjaOne, responseChosed, false);
@@ -127,7 +125,7 @@ public class UIBattles {
         } else if (characterChosen == 2 && actionChosen == 1 && typeChosed == 2) {
             System.out.print("Quantas vezes: ");
             int n = sc.nextInt();
-            boolean[] attempts = BattleService.multipleAttackHandsCleanTest(ninjaTwo, ninjaOne, responseChosed, n);
+            boolean[] attempts = Battle.multipleAttackHandCleanTest(ninjaTwo, ninjaOne, responseChosed, n);
             int m = 1;
             for (boolean attempt : attempts) {
                 if (attempt) {
@@ -141,9 +139,10 @@ public class UIBattles {
             }
         }
         System.out.println();
+        clearScreen();
     }
 
-    public static void clearScreen() {
+    private static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }

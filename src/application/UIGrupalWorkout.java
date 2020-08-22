@@ -2,14 +2,13 @@ package application;
 
 import entities.Ninja;
 import entities.Patent;
-import entities.Ranking;
-import mission.Contract;
+import workout.GroupWorkout;
 
 import java.util.Scanner;
 
-public class UIContract {
+public class UIGrupalWorkout {
 
-    public static Contract contractConfigureScreen(Scanner sc) {
+    public static GroupWorkout grupalWorkoutConfigureScreen(Scanner sc) {
         System.out.println("- - - - - - - - - - - - -");
         System.out.println("Configure o seu Contrato");
         System.out.println("- - - - - - - - - - - - -");
@@ -18,16 +17,12 @@ public class UIContract {
         int players = sc.nextInt();
         System.out.print("> 2ª: Quantos personagens estavam presentes na Missão? ");
         Ninja[] ninjas = ninjaInformationScreen(sc.nextInt(), sc);
-        System.out.print("> 3ª: Qual o Ranking da Missão? ");
-        Ranking ranking = new Ranking(sc.next().toUpperCase().charAt(0));
-        System.out.print("> 4ª: Qual o Pagamento em ¥ da Missão: ");
-        int payment = sc.nextInt();
         System.out.println();
         clearScreen();
-        return new Contract(ninjas, payment, ranking, players);
+        return new GroupWorkout(ninjas, players);
     }
 
-    public static Ninja[] ninjaInformationScreen(int n, Scanner sc) {
+    private static Ninja[] ninjaInformationScreen(int n, Scanner sc) {
         Ninja[] ninjas = new Ninja[n];
         for (int i = 0; i < ninjas.length; i++) {
             System.out.print("-> Cite o nome do ninja #" + (i + 1) + ": ");
@@ -56,5 +51,4 @@ public class UIContract {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-
 }
