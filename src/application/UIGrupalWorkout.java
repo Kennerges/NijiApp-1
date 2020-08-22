@@ -10,7 +10,7 @@ public class UIGrupalWorkout {
 
     public static GroupWorkout grupalWorkoutConfigureScreen(Scanner sc) {
         System.out.println("- - - - - - - - - - - - -");
-        System.out.println("Configure o seu Contrato");
+        System.out.println("Configure o seu Treino");
         System.out.println("- - - - - - - - - - - - -");
         System.out.println();
         System.out.print("> 1ª: Diga a quantidade de jogadores presentes na Missão: ");
