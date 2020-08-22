@@ -5,7 +5,7 @@ import entities.Ranking;
 
 public class Contract {
 
-    public static final Integer FUNCTION_NUMBER = 2;
+    public static final Integer FUNCTION_NUMBER = 3;
 
     private Ninja[] ninjas;
     private int payment;

@@ -4,7 +4,7 @@ import entities.Ninja;
 
 public class GroupWorkout {
 
-    public static final Integer FUNCTION_NUMBER = 3;
+    public static final Integer FUNCTION_NUMBER = 4;
 
     private final Ninja[] ninjas;
     private final int players;

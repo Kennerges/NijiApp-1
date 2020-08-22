@@ -3,6 +3,7 @@ package application;
 import battle.Battle;
 import entities.Ninja;
 import mission.Contract;
+import mission.Task;
 import workout.GroupWorkout;
 import workout.TechniqueWorkout;
 
@@ -27,9 +28,10 @@ public class Main {
         System.out.println();
         System.out.println("Funções:\n");
         System.out.println("> 1. Sistema de Batalhas 1v1");
-        System.out.println("> 2. Recompensa em Contratos");
-        System.out.println("> 3. Pontuação por Treino em Grupo");
-        System.out.println("> 4. Aprendizado de Técnicas");
+        System.out.println("> 2. Recompensa em Tarefas");
+        System.out.println("> 3. Recompensa em Contratos");
+        System.out.println("> 4. Pontuação por Treino em Grupo");
+        System.out.println("> 5. Aprendizado de Técnicas");
         System.out.println("> 0. Encerrar o programa.\n");
         System.out.println("Escolha a funcionalidade a ser usada.\n");
         System.out.print("Resposta: ");
@@ -37,7 +39,7 @@ public class Main {
         System.out.println();
 
         while (functionChosen != 1 && functionChosen != 2 && functionChosen != 3
-                && functionChosen != 4 && functionChosen != 0) {
+                && functionChosen != 4 && functionChosen != 5 &&functionChosen != 0) {
             System.out.print("Opção inexistente. Selecione outra: ");
             functionChosen = sc.nextInt();
             System.out.println();
@@ -77,7 +79,16 @@ public class Main {
             System.out.println();
             TechniqueWorkout techniqueWorkout = UITechniqueWorkout.techniqueWorkoutConfigureScreen(sc);
             techniqueWorkout.defineApprentice();
-        } else if (functionChosen == 0) {
+        } else if (functionChosen == Task.FUNCTION_NUMBER) {
+            System.out.print(ANSI_YELLOW + "Recompensa de Tarefas" + ANSI_RESET);
+            System.out.println(" escolhido");
+            sc.nextLine();
+            System.out.println();
+            Task task = UITask.taskConfigureScreen(sc);
+            while (task.showReward()) {
+                task = UITask.taskConfigureScreen(sc);
+            }
+        } else {
             System.out.print("Programa finalizado.");
         }
     }

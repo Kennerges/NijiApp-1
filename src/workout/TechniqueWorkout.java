@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class TechniqueWorkout {
 
-    public static final Integer FUNCTION_NUMBER = 4;
+    public static final Integer FUNCTION_NUMBER = 5;
 
     private final Ninja ninja;
     private final Technique technique;
